@@ -29,4 +29,18 @@ public class PatientTest {
         Patient p = patientService.getPatientById(1L);
         System.out.println(p);
     }
+
+    @Test
+    public void JPAqueryMethodCheck() {
+        Patient p = patientRepository.findByName("Aayushi");
+        System.out.println(p);
+
+        Patient p1 = patientRepository.findByEmail("aditya.adi02bhatt@gmail.com");
+        System.out.println(p1);
+
+        List<Patient> patientList = patientRepository.findByNameOrEmail("Rahul", "rads@gmail.com");
+        for(Patient p3 : patientList) {
+            System.out.println(p3);
+        }
+    }
 }
