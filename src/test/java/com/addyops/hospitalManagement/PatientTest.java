@@ -7,6 +7,9 @@ import com.addyops.hospitalManagement.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -55,6 +58,12 @@ public class PatientTest {
 //            System.out.println(row[0] + " : " + row[1]);
 //        }
 
-        patientService.getPatientUpdated("Radhika", 5L);
+//        patientService.getPatientUpdated("Radhika", 5L);
+
+        Pageable pageable = PageRequest.of(0,3);
+        Page<Patient> page = patientRepository.findAll(pageable);
+        for(Patient patient : page) {
+            System.out.println(patient);
+        }
     }
 }
