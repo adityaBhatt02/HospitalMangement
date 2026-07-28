@@ -15,7 +15,17 @@ public class PatientService {
     public Patient getPatientById(Long id) {
         Patient p1 = patientRepository.findById(id).orElseThrow();
         Patient p2 = patientRepository.findById(id).orElseThrow();
-
         return p1;
+    }
+
+    @Transactional
+    public void getPatientUpdated(String name, Long id) {
+        Patient p = patientRepository.findById(id).orElseThrow();
+        System.out.println(p.getName());
+
+        patientRepository.updateNameWithId(name, id);
+
+        Patient p1 = patientRepository.findById(id).orElseThrow();
+        System.out.println(p1.getName());
     }
 }
