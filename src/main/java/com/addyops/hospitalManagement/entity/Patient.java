@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @ToString
@@ -41,6 +42,9 @@ public class Patient {
     private BloodGroup blood_group;
 
     @OneToOne
-    @JoinColumn(name = "patient_insurance_id")
+    @JoinColumn(name = "patient_insurance_id")              // owning side
     private Insurance insurance;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments;
 }
